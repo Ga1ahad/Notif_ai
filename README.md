@@ -2,6 +2,7 @@
 
 Zadanie rekrutacyjne notif.ai.
 
+
 ## Użyte technologie
 - Django
 - Django Rest Framework
@@ -17,58 +18,23 @@ Zadanie rekrutacyjne notif.ai.
 
 ### User
 - id
-- username
-- password
+- username (max_length=160)
+- password(max_length=128, hash)
 
 
 ## Widoki
-### Rejestracja użytkownika
-url: https://notif-ai-app-daftcode.herokuapp.com/register
+| URL  | Metoda HTTP | Żądanie HTTP | Opis |
+| ------------- | ------------- | ------------- | ------------- |
+| https://notif-ai-app-daftcode.herokuapp.com/auth/register/  | POST | {     "username": "str",     "password": "str" } | Żądanie tworzy nowego użytkownika i zwraca jego login i id |
+| https://notif-ai-app-daftcode.herokuapp.com/auth/token/  | POST | {     "username": "str",     "password": "str" } | Żądanie zwraca token |
+| https://notif-ai-app-daftcode.herokuapp.com/messages  | GET | nie dotyczy | Żądanie tworzy nowego użytkownika i zwraca jego login i id |
+| https://notif-ai-app-daftcode.herokuapp.com/messages  | POST | {     "body": "str" } | Żądanie towrzy nową wiadmomość, wymagane jest podanie tokena. |
+| https://notif-ai-app-daftcode.herokuapp.com/messages/<int:message_id>  | GET | nie dotyczy | Żądanie zwraca treść wiadomości i liczbę wyświetleń. |
+| https://notif-ai-app-daftcode.herokuapp.com/messages/<int:message_id>  | POST | {     "body": "str" } | Żądanie tworzy nową wiadmomość, wymagane jest podanie tokena. |
+| https://notif-ai-app-daftcode.herokuapp.com/messages/<int:message_id>  | PUT | {     "body": "str" } | Żądanie aktulizuje treść wiadomości i resetuje liczbę wyświetleń, wymagane jest podanie tokena. |
+| https://notif-ai-app-daftcode.herokuapp.com/messages/<int:message_id>  | DELETE | nie dotyczy | Żądanie usuwa wiadomość, wymagane jest podanie tokena. |
 
-metoda: POST
+## Deployment 
 
-
-pola: username, password
-
-### Uzyskanie tokena
-https://notif-ai-app-daftcode.herokuapp.com/token
-
-metoda: POST
-
-pola: username, password
-
-### Podgląd wiadomiści
-https://notif-ai-app-daftcode.herokuapp.com/messages/<id>
-
-
-metoda: GET
-
-argumenty: message.pk
-### Dodawanie wiadomiści
-https://notif-ai-app-daftcode.herokuapp.com/messages
-
-metoda: POST
-
-pola: username, password
-
-
-### Edycja wiadomośći
-https://notif-ai-app-daftcode.herokuapp.com/messages/<id>
-
-metoda: PUT
-
-argumenty: message.pk
-
-### Usuwanie wiadomośći
-https://notif-ai-app-daftcode.herokuapp.com/messages/<id>
-
-metoda: DELETE
-
-argumenty: message.pk
-
-### Lista wiadomości
-https://notif-ai-app-daftcode.herokuapp.com/messages
-
-metoda: GET
-
+API zostało postwione na Heroku.
 
